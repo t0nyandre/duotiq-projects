@@ -1,0 +1,29 @@
+{
+  "name": "duotiq-projects",
+  "version": "0.1.0",
+  "description": "A Trello clone that I will use for my projects in Duotiq",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/t0nyandre/duotiq-projects.git"
+  },
+  "keywords": [
+    "trello",
+    "projects",
+    "board",
+    "card",
+    "ts",
+    "typescript",
+    "node",
+    "clone"
+  ],
+  "author": "Tony André Haugen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/t0nyandre/duotiq-projects/issues"
+  },
+  "homepage": "https://github.com/t0nyandre/duotiq-projects#readme"
+}
