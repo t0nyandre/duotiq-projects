@@ -1,6 +1,9 @@
 import { Router } from "express";
-import { getBoards } from "../controllers";
+import { allBoards, getBoard, createBoard, removeBoard } from "../controllers";
 
 export const boardRouter = Router()
 
-boardRouter.get("/", getBoards)
+boardRouter.get("/", allBoards)
+boardRouter.get("/:id", getBoard)
+boardRouter.post("/", createBoard)
+boardRouter.delete("/:id", removeBoard)

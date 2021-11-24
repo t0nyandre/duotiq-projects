@@ -2,6 +2,7 @@ require('dotenv').config()
 import { Options } from "@mikro-orm/core";
 import { PostgreSqlDriver } from "@mikro-orm/postgresql";
 import { TsMorphMetadataProvider } from "@mikro-orm/reflection";
+import { __prod__ } from "./constants";
 
 const config: Options = {
     type: 'postgresql',
@@ -14,7 +15,7 @@ const config: Options = {
     entitiesTs: ["./src/entities/*.ts"],
     driver: PostgreSqlDriver,
     metadataProvider: TsMorphMetadataProvider,
-    debug: process.env.NODE_ENV !== "production",
+    debug: !__prod__,
     migrations: {
         tableName: "migrations",
         path: "./src/migrations"

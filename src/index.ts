@@ -6,26 +6,33 @@ import { json, urlencoded } from "body-parser"
 import { boardRouter } from "./routes"
 import { MikroORM, RequestContext } from "@mikro-orm/core"
 import config from "./mikro-orm.config";
+import { __prod__ } from "./constants"
+import { DIType } from "./types"
+import { Board } from "./entities"
+
+export const DI = {} as DIType
 
 const main = async () => {
     const app = express()
 
     const PORT = process.env.PORT || 3000
 
-    if (process.env.NODE_ENV !== "production") {
+    if (!__prod__) {
         app.use(morgan("dev"))
     }
 
-    const orm = await MikroORM.init(config)
+    DI.orm = await MikroORM.init(config)
+    DI.em = DI.orm.em
+    DI.boardRepo = DI.orm.em.getRepository(Board)
 
     app.use(cors())
     app.use(json())
     app.use(urlencoded({ extended: true }))
     app.use((_req: express.Request, _res: express.Response, next: express.NextFunction) => {
-        RequestContext.create(orm.em, next)
+        RequestContext.create(DI.orm.em, next)
     })
 
-    app.use("/api/v1/boards/", boardRouter)
+    app.use("/api/v1/boards", boardRouter)
 
     app.get("/", (_, res) => {
         res.send("Welcome to Duotiq Projects")
