@@ -1,1 +1,2 @@
-export * from "./boardEntity"
+export * from "./Board"
+export * from "./BaseEntity"

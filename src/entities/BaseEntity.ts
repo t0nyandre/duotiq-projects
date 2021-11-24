@@ -1,13 +1,9 @@
-import { Entity, PrimaryKey, Property } from "@mikro-orm/core";
-import { v4 } from "uuid";
+import { PrimaryKey, Property } from "@mikro-orm/core"
+import { v4 } from "uuid"
 
-@Entity()
-export class Board {
+export abstract class BaseEntity {
     @PrimaryKey()
     id: string = v4()
-
-    @Property({type: "text"})
-    name!: string
 
     @Property({type: "date"})
     createdAt = new Date()

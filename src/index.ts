@@ -5,7 +5,7 @@ import morgan from "morgan"
 import { json, urlencoded } from "body-parser"
 import { boardRouter } from "./routes"
 import { MikroORM, RequestContext } from "@mikro-orm/core"
-import { config as MikroConfig } from "./mikro-orm.config";
+import config from "./mikro-orm.config";
 
 const main = async () => {
     const app = express()
@@ -16,7 +16,7 @@ const main = async () => {
         app.use(morgan("dev"))
     }
 
-    const orm = await MikroORM.init(MikroConfig)
+    const orm = await MikroORM.init(config)
 
     app.use(cors())
     app.use(json())
